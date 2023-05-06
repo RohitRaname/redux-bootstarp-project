@@ -11,7 +11,7 @@ const GridView = () => {
 
   return (
     <Wrapper>
-      <Row lg={2} xl={3} className="g-3">
+      <Row className="grid-3">
         {products.map((product) => (
           <Product key={product.id} {...product} />
         ))}
@@ -20,6 +20,9 @@ const GridView = () => {
   );
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  .products {
+  }
+`;
 
 export default GridView;

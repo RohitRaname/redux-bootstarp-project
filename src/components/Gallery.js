@@ -8,37 +8,62 @@ const Gallery = ({ images = [{ url: "" }] }) => {
 
   return (
     <Wrapper>
-      <Row>
-        <Col className="col-12 mb-3">
-          <img src={main} className="img main-img" alt="" />
-        </Col>
-
-        {images?.length > 0 &&
-          images.map((img) => (
-            <Col>
+      <Row className="gx-5 gy-1 gallery">
+        <div className="col-1 side-images">
+          {images?.length > 0 &&
+            images.map((img) => (
               <img
                 src={img.url}
-                className={`img side-img ${img.url === main && "active"}`}
+                className={`img side-img  mb-2 ${img.url === main && "active"}`}
                 alt=""
                 onClick={() => setMain(img.url)}
               />
-            </Col>
-          ))}
+            ))}
+        </div>
+        <Col className="col-12 col-sm-11 mb-3">
+          <img src={main} className="img main-img" alt="" />
+        </Col>
       </Row>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
+  .img {
+    border-radius: 2px;
+  }
+
   .main-img {
-    height: 27rem;
+    max-height: 27rem;
+
+    border-radius: 3px;
   }
 
   .side-img {
-    height: 5rem;
+    height: 3rem;
+    width: 3rem;
 
     &.active {
-      border:1.5px solid var(--clr-primary-1);
+      border: 1.5px solid var(--clr-primary-1);
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .gallery {
+      flex-direction: column;
+      flex-direction: column-reverse;
+
+      .main-img {
+        height: 24rem;
+      }
+
+      .side-images {
+        display: flex;
+        gap: 1rem;
+
+        img {
+        }
+      }
     }
   }
 `;

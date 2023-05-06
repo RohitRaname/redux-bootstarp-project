@@ -45,11 +45,7 @@ const SingleProduct = () => {
   return (
     <Wrapper className="">
       <BreadCrumb page="Products" subPage="Modern Poster" />
-      <section className="section  section-center page">
-        <NavLink to="/products">
-          <Button className="mb-5">BACK TO PRODUCTS</Button>
-        </NavLink>
-
+      <section className="section  pt-0  section-center page">
         <Row className="g-5">
           <Col sm={12} lg={5}>
             <Gallery images={images} />

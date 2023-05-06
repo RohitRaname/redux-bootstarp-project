@@ -35,9 +35,9 @@ const ProductsPage = () => {
 
   return (
     <main>
-      <BreadCrumb page="Products" />
-      <Wrapper className="page section-center section">
-        <Row className="g-4">
+      {/* <BreadCrumb page="Products" /> */}
+      <Wrapper className="page section-center section-sm">
+        <Row className="gx-4">
           <Col sm={12} md={3}>
             <FilterProduct />
           </Col>

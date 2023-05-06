@@ -6,6 +6,9 @@ const Home = () => {
     <main>
       <Hero />
       <FeaturedProducts />
+      <FeaturedProducts />
+      <FeaturedProducts />
+      <FeaturedProducts />
       <Features />
       <NewsLetter />
     </main>

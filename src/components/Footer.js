@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="section-center">
         <span>
           &copy; {new Date().getFullYear()}{" "}
-          <span className="text-primary">ComfySloth</span>{" "}
+          <span className="text-primary">Nexo</span>{" "}
         </span>
 
         <div className="d-block d-md-none"></div>

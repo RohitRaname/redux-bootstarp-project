@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Row, Dropdown } from "react-bootstrap";
-import { FaAcquisitionsIncorporated, FaList } from "react-icons/fa";
+import { Row, Dropdown, Button } from "react-bootstrap";
+import { FaAcquisitionsIncorporated, FaFilter, FaList } from "react-icons/fa";
+import { BsFillGridFill, BsList } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
@@ -22,64 +23,77 @@ const Sort = () => {
   };
 
   return (
-    <Wrapper className="mb-5">
-      <Row md={1} lg={3} className="f-ab gx-5 gy-3">
-        <div className="left d-md-flex   f-ac ">
-          <div className="btn-container mb-3 mb-md-0  d-flex me-2">
-            <button
-              className={`btn border-dark rounded me-2 ${
-                gridView ? "active" : ""
-              }`}
-              onClick={() => dispatch(setGridView())}
-            >
-              <FaList className="icon" />
-            </button>
-            <button
-              className={`btn border-dark rounded ${!gridView ? "active" : ""}`}
-              onClick={() => dispatch(setListView())}
-            >
-              <FaAcquisitionsIncorporated className="icon" />
-            </button>
-          </div>
-          <span className="text-nowrap ">{products.length} Products Found</span>
-        </div>
-        <hr className=" mb-0" />
-        <div className="right d-flex gap-4   f-ac">
-          <span className="text-nowrap">Sort By</span>
-          <Dropdown>
-            <Dropdown.Toggle variant="white" id="dropdown-basic">
-              {sortText}
-            </Dropdown.Toggle>
+    <Wrapper className="mb-4">
+      <p>
+        <span>{products.length} results for</span>
+        <span className="text-primary ms-1">"Rohit the Man</span>"{" "}
+      </p>
+      <div className="mobile-options d-flex f-jsb">
+        <Button variant="outline-secondary" size="sm" className="py-1 ">
+          <FaFilter />
+          <span className="ms-2">Filter</span>
+        </Button>
+        <Dropdown>
+          <Dropdown.Toggle id="dropdown-basic" size="sm" variant="">
+            {sortText}
+          </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={handleSort} data-value="lowest-price">
-                Price( Lowest )
-              </Dropdown.Item>
-              <Dropdown.Item onClick={handleSort} data-value="highest-price">
-                Price( Highest )
-              </Dropdown.Item>
-              <Dropdown.Item onClick={handleSort} data-value="a-z">
-                Name (a-z)
-              </Dropdown.Item>
-              <Dropdown.Item onClick={handleSort} data-value="z-a">
-                Name (z-a)
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-      </Row>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={handleSort} data-value="lowest-price">
+              Price( Lowest )
+            </Dropdown.Item>
+            <Dropdown.Item onClick={handleSort} data-value="highest-price">
+              Price( Highest )
+            </Dropdown.Item>
+            <Dropdown.Item onClick={handleSort} data-value="a-z">
+              Name (a-z)
+            </Dropdown.Item>
+            <Dropdown.Item onClick={handleSort} data-value="z-a">
+              Name (z-a)
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+
+      <div className="ms-auto d-flex f-as">
+        <Dropdown>
+          <Dropdown.Toggle
+            variant="white"
+            id="dropdown-basic"
+            className="border-dark d-none d-md-block"
+          >
+            {sortText}
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={handleSort} data-value="lowest-price">
+              Price( Lowest )
+            </Dropdown.Item>
+            <Dropdown.Item onClick={handleSort} data-value="highest-price">
+              Price( Highest )
+            </Dropdown.Item>
+            <Dropdown.Item onClick={handleSort} data-value="a-z">
+              Name (a-z)
+            </Dropdown.Item>
+            <Dropdown.Item onClick={handleSort} data-value="z-a">
+              Name (z-a)
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  .btn-container .btn {
-    padding: 0.05rem 0.4rem;
+  .btn-container .btn,
+  .filter-btn {
+    padding: 0.1rem 0.4rem;
     font-size: 0.9rem;
 
     &.active {
-      background: var(--clr-black);
-      color: var(--clr-white);
+      background: var(--black);
+      color: var(--white);
     }
   }
 

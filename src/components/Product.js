@@ -11,62 +11,52 @@ const Product = ({ image, name, price, id }) => {
     <Wrapper>
       <div className="img-container">
         <img className="mb-3" src={image} alt={name} />
-
-        <NavLink to={`/product/${id}`}>
-          <div className="search bg-primary text-white pos-center">
-            <FaSearch className="icon" />
-          </div>
-        </NavLink>
       </div>
 
-      <div className="info  d-flex f-jsb">
-        <p className="fs-6 text-capitalize">{name}</p>
-        <p className="text-primary">{formatPrice(price)}</p>
+      <div className="info ">
+        <p className="fs-5 text-capitalize">{name}</p>
+        <div className="price">
+          <span className="new-price fw-bold">{formatPrice(price)}</span>{" "}
+          <span className="discount text-success">(44% OFF)</span>
+          <p className="prev-price text-decoration-line-through">$480</p>
+        </div>
       </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.article`
+  border: 1px solid var(--grey-100);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  background: var(--white);
+
+  position: relative;
+  z-index: 10;
+  transition: var(--transition);
+
+  &:hover {
+   filter: brightness(.96);
+   border-color: var(--grey-200);
+  }
+
   img {
     height: 13rem;
     border-radius: 5px;
   }
 
-  .search {
-    cursor: pointer;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-
-    opacity: 0;
-    pointer-events: none;
-
-    .icon {
-      font-size: 0.8rem;
-    }
-  }
-
   .img-container {
     position: relative;
     z-index: 10;
+  }
 
-    img,
-    .search {
-      transition: var(--transition);
-    }
-    &:hover img {
-      filter: brightness(0.6);
-    }
-
-    &:hover .search {
-      pointer-events: auto;
-      opacity: 1;
-    }
+  .new-price {
+    font-size: large;
+  }
+  .prev-price {
+    font-size: 0.9rem;
+    color: var(--grey-400);
   }
 `;
 

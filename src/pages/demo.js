@@ -1,6 +1,6 @@
 import React from "react";
-import { Row,Col,Button,Badge,Spinner } from "react-bootstrap";
-
+import { Row,Col,Button,Badge,Spinner,Form, } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Footer = () => {

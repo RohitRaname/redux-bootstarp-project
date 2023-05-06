@@ -2,10 +2,17 @@ import React, { useRef, useState } from "react";
 
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
-import { Container, Nav, Navbar, Offcanvas, Badge } from "react-bootstrap";
+import {
+  Container,
+  Nav,
+  Button,
+  Navbar,
+  Offcanvas,
+  Badge,
+} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-import { FaShoppingBag, FaUserPlus } from "react-icons/fa";
+import { FaBox, FaSearch, FaShoppingBag, FaUserPlus } from "react-icons/fa";
 
 import { links } from "../utils/constants";
 import { useSelector } from "react-redux";
@@ -13,98 +20,122 @@ import { useSelector } from "react-redux";
 const Navi = () => {
   const [showNavbar, setShowNavbar] = useState(false);
 
-  const {totalQty:cartTotalQty}= useSelector(state=>state.cart);
+  const { totalQty: cartTotalQty } = useSelector((state) => state.cart);
 
   return (
-    <Wrapper className="bg-light">
-      <div className="section-center">
-        <Navbar expand="lg" className="f-ac">
-          <NavLink className="navbar-brand" to="/">
-            <img className="logo" src={logo} alt="comfy store" />
-          </NavLink>
-
-          <Navbar.Toggle
-            aria-controls={`offcanvasNavbar-expand`}
-            onClick={() => setShowNavbar(!showNavbar)}
+    <Wrapper className="nav">
+      <div className="section-center nav-center">
+        <img src={logo} alt="" className="logo" />
+        <div className="search">
+          <input
+            type="text "
+            className="rounded  w-100"
+            placeholder="Search for Products"
           />
+          <FaSearch className="search-icon" />
+        </div>
 
-          <div className={`navbar-collapse ${!showNavbar ? "collapse" : ""}`}>
-            <Nav className="nav-links justify-content-end flex-grow-1 pe-3 gap-4">
-              {links.map((link) => {
-                const { text, url, id, icon } = link;
-                return (
-                  <NavLink
-                    to={url}
-                    className={({ isActive }) => {
-                      return isActive ? "nav-link active" : "nav-link";
-                    }}
-                    key={id}
-                    onClick={() => setShowNavbar(false)}
-                    end
-                  >
-                    <span className="icon">{icon}</span>
-                    {text}
-                  </NavLink>
-                );
-              })}
-            </Nav>
-            <Nav className="justify-content-end flex-grow-1 pe-3 btn-container d-flex gap-4 align-items-center">
-              <NavLink to="/cart">
-              <div
-                className="cart-btn relative text-dark"
-                onClick={() => setShowNavbar(false)}
-              >
-                  <h4 className="fw-semibold">Cart</h4>
-                  <FaShoppingBag className="icon" />
-                  <Badge pill className="cart-value">
-                    {cartTotalQty}
-                  </Badge>
-              </div>
-                </NavLink>
+        <div className="orders">
+          <FaBox className="icon" />
+          <span>My orders</span>
+        </div>
 
-              <div className="auth-btn" onClick={() => setShowNavbar(false)}>
-                <h4 className="fw-semibold">Logout</h4>
-                <FaUserPlus className="icon" />
-              </div>
-            </Nav>
-          </div>
-        </Navbar>
+        <div className="bag">
+          <FaShoppingBag className="icon" />
+          <span>My Bag</span>
+        </div>
+
+        <Button variant="primary" className="login">
+          Login
+        </Button>
       </div>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  .logo,
-  .sidebar-logo {
-    height: 3rem;
-    margin-left:-.5rem;
+const Wrapper = styled.nav`
+  background: var(--white);
+  border-bottom: 1px solid var(--grey-100);
+  .nav-center {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto;
+    padding: 1rem 0;
+
+    align-items: start;
+    gap: 1.4rem;
+    row-gap: 1rem;
   }
 
-  .nav-link {
-    text-transform: capitalize;
-    font-size: 1.1rem;
+  .logo {
+    height: 2.5rem;
   }
 
-  .btn-container div {
-    display: flex;
-    align-items: baseline;
-    gap: 0.8rem;
-  }
-
-  .cart-btn {
+  .search {
+    width: 100%;
     position: relative;
-    .badge {
-      position: absolute;
-      top: -0.3rem;
-      right: -0.5rem;
 
-      font-weight: 400;
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+    }
+  }
+  input {
+    font-size: 0.95rem;
+    padding: 0.4rem 1rem;
+
+    border: 1px solid var(--primary-500);
+
+    &::placeholder {
+      color: var(--grey-500);
     }
   }
 
-  .icon {
-    font-size: 1.7rem;
+  .bag,
+  .orders {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.9rem;
+    .nav-center {
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+    }
+
+    .orders {
+      justify-self: end;
+    }
+
+    .search {
+      grid-column: 1/-1;
+      grid-row: 2;
+      width: auto;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+    }
+
+    .login {
+      padding: 0.2rem 0.4rem;
+    }
+
+    .bag,
+    .orders {
+      span {
+        display: none;
+      }
+    }
   }
 `;
 

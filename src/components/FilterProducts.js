@@ -1,5 +1,5 @@
-import React from "react";
-import { Badge, Button, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Badge, Button, Row, CloseButton } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
@@ -8,6 +8,9 @@ import { setFilter, clearFilters } from "../features/products/productsSlice";
 import { FaCheck } from "react-icons/fa";
 
 const FilterProduct = () => {
+  // applied in tab screen
+  const [showFilters, setShowFilters] = useState(false);
+
   const {
     items: products,
     filters: { search, category, company, color, price, maxPrice, shipping },
@@ -29,8 +32,10 @@ const FilterProduct = () => {
   };
 
   return (
-    <Wrapper>
-      <div className="mb-5">
+    <Wrapper className={showFilters ? "show-filters" : ""}>
+      <div className={`mb-5`}>
+        <CloseButton className="d-block d-md-none" onClick={() => setShowFilters(false)} />
+
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="form-group mb-3">
             <input
@@ -93,7 +98,7 @@ const FilterProduct = () => {
           </div>
           <div className="form-group mb-3 colors d-flex f-ab gap-3">
             <label className="h6 mb-2">Colors</label>
-            <div className="d-inline-flex gap-1 f-ab">
+            <div className="d-inline-flex gap-1 f-ac">
               <Button
                 variant="link"
                 className="d-block p-0 me-1 color-all-btn"
@@ -122,16 +127,21 @@ const FilterProduct = () => {
           </div>
           <div className="form-group mb-3">
             <label className="h6 d-block mb-1">Price</label>
-            <input
-              type="range"
-              min="0"
-              name="price"
-              value={price}
-              max={maxPrice}
-              onChange={handleChange}
-            />
+            <div className="d-flex gap-3 f-ac">
+              <input
+                className="w-50"
+                type="range"
+                min="0"
+                name="price"
+                value={price}
+                max={maxPrice}
+                onChange={handleChange}
+              />
 
-            <span>{formatPrice(price)}</span>
+              <span className="" style={{ width: "3rem" }}>
+                {formatPrice(price)}
+              </span>
+            </div>
           </div>
 
           <div className=" mb-3 d-flex f-jsb">
@@ -148,13 +158,12 @@ const FilterProduct = () => {
             />
           </div>
 
-          <Button
-            variant="danger"
-            size="sm"
+          <button
+            className="btn btn-danger remove-btn"
             onClick={() => dispatch(clearFilters())}
           >
             Clear Filters
-          </Button>
+          </button>
         </form>
       </div>
     </Wrapper>
@@ -162,6 +171,12 @@ const FilterProduct = () => {
 };
 
 const Wrapper = styled.section`
+  .btn-close {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+  }
+
   .btn[name="category"] {
     padding: 0;
   }
@@ -169,6 +184,11 @@ const Wrapper = styled.section`
   form {
     display: grid;
     justify-content: start;
+  }
+
+  label {
+    font-size: 1.2rem;
+    font-weight: 500;
   }
 
   .categories button {
@@ -196,6 +216,28 @@ const Wrapper = styled.section`
 
     .active {
       color: var(--clr-primary);
+    }
+  }
+
+  .remove-btn {
+    background: red;
+    color: var(--white);
+  }
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: var(--white);
+    z-index: 100;
+
+    display: none;
+    place-items: center;
+
+    &.show-filters {
+      display: grid;
     }
   }
 `;

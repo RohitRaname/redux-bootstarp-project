@@ -15,9 +15,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getProducts } from "./features/products/productsSlice";
 import { calculateTotals } from "./features/cart/cartSlice";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import AlertToast from "./components/Alert";
 
 function App() {
   const { cart } = useSelector((state) => state.cart);
+  const { alert,alertText,alertType } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,8 +49,12 @@ function App() {
             }
           />
           <Route path="*" element={<Error />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
+
+      {alert && <AlertToast alertText={alertText} alertType={alertType}/>}
     </BrowserRouter>
   );
 }

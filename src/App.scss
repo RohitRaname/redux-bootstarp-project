@@ -1,0 +1,14 @@
+$theme-colors: (
+  "primary": #7048e8,
+);
+
+.btn-primary {
+  color: var(--white) !important;
+}
+
+.text-success {
+  color: var(--secondary-500) !important;
+}
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";

@@ -13,7 +13,7 @@ const Hero = () => {
           <h1 className="fw-bold mb-4">
             Design Your <br /> Comfort Zone{" "}
           </h1>
-          <p className="fs-6 mb-4">
+          <p className=" mb-4">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, at
             sed omnis corporis doloremque possimus velit! Repudiandae nisi odit,
             aperiam odio ducimus, obcaecati libero et quia tempora excepturi
@@ -38,6 +38,14 @@ const Wrapper = styled.section`
 
   .hero {
     align-items: center;
+  }
+
+  h1{
+    line-height: 1.24;
+  }
+
+  p{
+    font-size: 1.1rem;
   }
 
   .img-container {

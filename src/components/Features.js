@@ -25,8 +25,8 @@ const Features = () => {
         <div className="features grid-3">
           {services.map(({ id, icon, title, text }) => (
             <Col key={id} md={6} lg={4} className="feature  p-5 text-center">
-              <span className="icon-box f-c d-inline-flex mb-3">{icon}</span>
-              <h4>{title}</h4>
+              <span className="icon-box f-c  d-inline-flex mb-3">{icon}</span>
+              <h3>{title}</h3>
               <p>{text}</p>
             </Col>
           ))}
@@ -37,23 +37,23 @@ const Features = () => {
 };
 
 const Wrapper = styled.section`
-  background: var(--clr-primary-10);
-  color: var(--clr-primary-1);
+  background: var(--primary-100);
+  color: var(--primary-900);
 
   .features {
   }
 
   .feature {
-    background: var(--clr-primary-6);
+    background: var(--primary-200);
     border-radius: 3px;
 
     .icon-box {
       height: 3.5rem;
       width: 3.5rem;
       border-radius: 50%;
-      background: var(--clr-primary-10);
+      /* background: var(--primary-100); */
 
-      font-size: 1.7rem;
+      font-size: 2.7rem;
     }
   }
 `;
