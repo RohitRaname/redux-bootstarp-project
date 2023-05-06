@@ -27,20 +27,6 @@ const CartContainer = () => {
 
   return (
     <Wrapper>
-      {/* Heading */}
-      <Row className="mb-3 f-ac d-none d-lg-flex">
-        <Col className="col-3">Item</Col>
-        <Col>Price</Col>
-        <Col>Quantity</Col>
-        <Col className="">Subtotal</Col>
-        <Col className="col-auto">
-          <Badge className="bg-danger p-2 d-none">
-            <FaTrash />
-          </Badge>
-        </Col>
-      </Row>
-      <hr className="mb-5" />
-
       {cart.map((cartItem) => (
         <CartItem {...cartItem} />
       ))}
@@ -49,7 +35,7 @@ const CartContainer = () => {
         <NavLink to="/products" className="btn btn-primary">
           Continue shopping
         </NavLink>
-        <Button variant="dark" onClick={() => dispatch(clearCart())}>
+        <Button variant="danger" onClick={() => dispatch(clearCart())}>
           Clear Shopping Cart
         </Button>
       </div>
@@ -92,7 +78,7 @@ const Wrapper = styled.section`
   }
 
   .col {
-    justify-content: center;
+    justify-content: start;
   }
 `;
 

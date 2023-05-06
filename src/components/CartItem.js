@@ -22,9 +22,9 @@ const CartItem = ({ id, name, price, color, qty, stock, images }) => {
     dispatch(toggleCartItemQty({ type: "decrease", id: id, qty: qty - 1 }));
 
   return (
-    <Wrapper>
-      <Row className="mb-5 f-ac">
-        <Col className="d-flex gap-3 col col-lg-3 f-ac">
+    <Wrapper className="radius-rounded">
+      <Row className="mb-5 f-ac p-3">
+        <Col className="d-flex gap-3 col col-lg-3 f-ac f-js">
           <img src={images[0]?.url} className="img" alt="" />
           <div className="info">
             <h5 className="text-nowrap mb-0">{name}</h5>
@@ -59,15 +59,19 @@ const CartItem = ({ id, name, price, color, qty, stock, images }) => {
 };
 
 const Wrapper = styled.article`
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
+    0px 3px 10px rgba(0, 0, 0, 0.09);
+  border-radius: 7px;
+
   img {
-    max-height: 6.4rem;
-    max-width: 6rem;
+    height: 5rem;
+    width: 6rem;
   }
 
   .color {
     display: inline-block;
-    height: 1rem;
-    width: 1rem;
+    height: .8rem;
+    width: .8rem;
   }
 
   .cartTotal {
@@ -79,7 +83,7 @@ const Wrapper = styled.article`
   }
 
   .col {
-    justify-content: center;
+    justify-content: start;
   }
 `;
 

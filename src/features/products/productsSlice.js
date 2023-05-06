@@ -17,6 +17,9 @@ const initialState = {
 
   // components
   gridView: true,
+
+
+
   sort: "lowest-price",
 
   // data
@@ -55,7 +58,7 @@ const productsSlice = createSlice({
       };
     },
 
-    clearFiltersAndSort:(state)=>{
+    clearFiltersAndSort: (state) => {
       return {
         ...state,
         filters: {
@@ -63,7 +66,7 @@ const productsSlice = createSlice({
           price: state.filters.maxPrice,
           maxPrice: state.filters.maxPrice,
         },
-        sort:"lowest-price"
+        sort: "lowest-price",
       };
     },
 
@@ -82,10 +85,9 @@ const productsSlice = createSlice({
     },
 
     sortProducts: (state) => {
-      state.isLoading=true;
+      state.isLoading = true;
       const { sort } = state;
       let products = state.filteredItems;
-
 
       if (sort === "lowest-price") products.sort((a, b) => a.price - b.price);
       if (sort === "highest-price")
@@ -95,11 +97,11 @@ const productsSlice = createSlice({
         products.sort((a, b) => -a.name.localeCompare(b.name));
 
       state.filteredItems = products;
-      state.isLoading=false;
+      state.isLoading = false;
     },
 
     filterProducts: (state) => {
-      state.isLoading=true;
+      state.isLoading = true;
 
       const { search, category, company, color, price, shipping } =
         state.filters;
@@ -125,15 +127,19 @@ const productsSlice = createSlice({
       if (company !== "all")
         products = products.filter((el) => el.company === company);
       if (color !== "all")
-        products = products.filter((el) => el.colors.find((elColor=>elColor===color)));
+        products = products.filter((el) =>
+          el.colors.find((elColor) => elColor === color)
+        );
 
       if (price) products = products.filter((el) => el.price < price);
       if (shipping)
         products = products.filter((el) => el.shipping === shipping);
 
       state.filteredItems = products;
-      state.isLoading=false;
+      state.isLoading = false;
     },
+
+
   },
   extraReducers: (builder) => {
     builder
@@ -171,7 +177,6 @@ export const {
 
   sortProducts,
   filterProducts,
-
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

@@ -10,12 +10,13 @@ import {
   setGridView,
   setListView,
 } from "../features/products/productsSlice";
+import { toggleFilterSidebar } from "../features/user/userSlice";
 
 const Sort = () => {
   const [sortText, setSortText] = useState("Price( Lowest )");
 
   const dispatch = useDispatch();
-  const { gridView, items: products } = useSelector((state) => state.products);
+  const { gridView, items: products,} = useSelector((state) => state.products);
 
   const handleSort = (e) => {
     setSortText(e.target.textContent);
@@ -28,8 +29,8 @@ const Sort = () => {
         <span>{products.length} results for</span>
         <span className="text-primary ms-1">"Rohit the Man</span>"{" "}
       </p>
-      <div className="mobile-options d-flex f-jsb">
-        <Button variant="outline-secondary" size="sm" className="py-1 ">
+      <div className="mobile-options d-flex d-md-none f-jsb">
+        <Button size="sm" className="py-1" onClick={()=>dispatch(toggleFilterSidebar())}>
           <FaFilter />
           <span className="ms-2">Filter</span>
         </Button>
@@ -55,7 +56,7 @@ const Sort = () => {
         </Dropdown>
       </div>
 
-      <div className="ms-auto d-flex f-as">
+      <div className="ms-auto d-flex f-as f-je">
         <Dropdown>
           <Dropdown.Toggle
             variant="white"

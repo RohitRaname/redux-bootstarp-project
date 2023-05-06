@@ -18,16 +18,16 @@ const Products = () => {
         <Spinner variant="primary"></Spinner>
       </section>
     );
-  if (filteredItems.length===0)
-    return (
-      <section className="section text-center">
-        <p className="fs-4">No items matched</p>
-      </section>
-    );
 
   return (
     <Wrapper>
       <Sort />
+
+      {filteredItems.length === 0 && (
+        <section className="section text-center">
+          <p className="fs-4">No items matched</p>
+        </section>
+      )}
       {gridView ? <GridView /> : <ListView />}
     </Wrapper>
   );

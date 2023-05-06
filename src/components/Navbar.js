@@ -25,7 +25,9 @@ const Navi = () => {
   return (
     <Wrapper className="nav">
       <div className="section-center nav-center">
-        <img src={logo} alt="" className="logo" />
+        <NavLink to="/">
+          <img src={logo} alt="" className="logo" />
+        </NavLink>
         <div className="search">
           <input
             type="text "
@@ -35,19 +37,24 @@ const Navi = () => {
           <FaSearch className="search-icon" />
         </div>
 
-        <div className="orders">
+        <NavLink to="/orders/user" className="orders">
           <FaBox className="icon" />
-          <span>My orders</span>
-        </div>
+          <span className="text-black">My orders</span>
+        </NavLink>
 
-        <div className="bag">
+        <NavLink to="/cart" className="bag">
           <FaShoppingBag className="icon" />
-          <span>My Bag</span>
-        </div>
+          <span className="text-black">My Bag</span>
+          <Badge className="cart-count" pill>
+            1
+          </Badge>
+        </NavLink>
 
-        <Button variant="primary" className="login">
-          Login
-        </Button>
+        <NavLink to="/login">
+          <Button variant="primary" className="auth-btn">
+            Login
+          </Button>
+        </NavLink>
       </div>
     </Wrapper>
   );
@@ -56,6 +63,7 @@ const Navi = () => {
 const Wrapper = styled.nav`
   background: var(--white);
   border-bottom: 1px solid var(--grey-100);
+
   .nav-center {
     display: grid;
     grid-template-columns: auto 1fr auto auto auto;
@@ -85,22 +93,46 @@ const Wrapper = styled.nav`
     font-size: 0.95rem;
     padding: 0.4rem 1rem;
 
-    border: 1px solid var(--primary-500);
+    border: 1px solid var(--primary-700);
 
     &::placeholder {
       color: var(--grey-500);
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 
   .bag,
   .orders {
+    cursor: pointer;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .icon {
+      color: var(--black);
+      font-size: 1.2rem;
+    }
+
+    span {
+      text-decoration: none;
+    }
   }
 
-  .login {
+  .bag {
+    position: relative;
+    .cart-count {
+      position: absolute;
+      top: -.5rem;
+      right: .3rem;
+      font-size: .7rem;
+    }
+  }
+
+  .auth-btn {
     padding: 0.5rem 1rem;
     font-weight: 500;
   }
@@ -126,7 +158,7 @@ const Wrapper = styled.nav`
       font-size: 1.2rem;
     }
 
-    .login {
+    .auth-btn {
       padding: 0.2rem 0.4rem;
     }
 
@@ -134,6 +166,10 @@ const Wrapper = styled.nav`
     .orders {
       span {
         display: none;
+      }
+
+      .cart-count {
+        display: block;
       }
     }
   }

@@ -6,10 +6,11 @@ import styled from "styled-components";
 import { formatPrice, getUniqueValues } from "../utils/helpers";
 import { setFilter, clearFilters } from "../features/products/productsSlice";
 import { FaCheck } from "react-icons/fa";
+import { toggleFilterSidebar } from "../features/user/userSlice";
 
 const FilterProduct = () => {
   // applied in tab screen
-  const [showFilters, setShowFilters] = useState(false);
+  const { isFilterSidebarOpen } = useSelector((state) => state.user);
 
   const {
     items: products,
@@ -32,9 +33,12 @@ const FilterProduct = () => {
   };
 
   return (
-    <Wrapper className={showFilters ? "show-filters" : ""}>
+    <Wrapper className={isFilterSidebarOpen ? "show-filters" : ""}>
       <div className={`mb-5`}>
-        <CloseButton className="d-block d-md-none" onClick={() => setShowFilters(false)} />
+        <CloseButton
+          className="d-block d-md-none"
+          onClick={() => dispatch(toggleFilterSidebar())}
+        />
 
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="form-group mb-3">
