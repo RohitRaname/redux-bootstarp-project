@@ -9,7 +9,7 @@ const Gallery = ({ images = [{ url: "" }] }) => {
   return (
     <Wrapper>
       <Row className="gx-5 gy-1 gallery">
-        <div className="col-1 side-images">
+        <div className="col col-sm-1 side-images">
           {images?.length > 0 &&
             images.map((img) => (
               <img
@@ -42,9 +42,10 @@ const Wrapper = styled.section`
   .side-img {
     height: 3rem;
     width: 3rem;
+    cursor: pointer;
 
     &.active {
-      border: 1.5px solid var(--clr-primary-1);
+      border: 2px solid var(--primary-900);
     }
   }
 

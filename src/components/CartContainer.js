@@ -18,9 +18,12 @@ const CartContainer = () => {
   if (cart.length === 0)
     return (
       <div className="section page text-center page mx-auto">
-        <h4 className="mb-4">Cart is empty</h4>
-        <NavLink to="/products" className="btn btn-primary">
-          Fill it
+        <h4 className="mb-5">
+          Your bag is empty. <br className="mb-2" /> Let's fill some fantastic
+          products{" "}
+        </h4>
+        <NavLink to="/products" className="btn btn-primary ">
+          Continue shopping
         </NavLink>
       </div>
     );
@@ -55,7 +58,7 @@ const CartContainer = () => {
         </div>
         <div className="text-center">
           <div className="d-grid">
-            <Button>PROCEED TO CHECKOUT</Button>
+            <Button className="">PROCEED TO CHECKOUT</Button>
           </div>
         </div>
       </div>
@@ -79,6 +82,9 @@ const Wrapper = styled.section`
 
   .col {
     justify-content: start;
+  }
+
+  button {
   }
 `;
 

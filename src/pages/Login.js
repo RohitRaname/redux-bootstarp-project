@@ -25,16 +25,16 @@ const Register = () => {
   };
 
   return (
-    <Wrapper className="page-center">
+    <Wrapper className="page-center page section section-center">
       <Form
         className="form"
         noValidate
         validated={validated}
         onSubmit={handleSubmit}
       >
-        <h3 className="mb-5 fw-semibold">Login</h3>
+        <h3 className="mb-3 fw-semibold">Login</h3>
 
-        <div className="mb-4">
+        <div className="mb-2">
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control required type="email" placeholder="Email" />
@@ -43,7 +43,7 @@ const Register = () => {
             </Form.Control.Feedback>
           </Form.Group>
         </div>
-        <div className="mb-5">
+        <div className="mb-2">
           <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control

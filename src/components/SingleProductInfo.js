@@ -96,24 +96,17 @@ const SingleProductInfo = ({ product }) => {
 
           <div className="btn-container mt-3  ">
             <Button
-              className="me-4 addToCart-btn mb-2 mb-sm-0"
-              variant="primary"
-              size="lg"
-              onClick={() => {
-                dispatch(addItemToCart({ ...product, qty: qty, color: color }));
-              }}
-            >
-              <span className="text-nowrap">Add To Cart</span>
-            </Button>
-            <NavLink
-              className="btn btn-outline btn-lg goToCart-btn"
-              style={{ background: "var(--primary-100)" }}
+              variant="outline-primary"
+              className="me-4 addToCart-btn mb-2 mb-sm-0 text-black text-center f-ac"
               onClick={() => {
                 dispatch(addItemToCart({ ...product, qty: qty, color: color }));
               }}
             >
               <FaShoppingBag className="icon" />
-              <span className="">Go to Bag</span>
+              <span className="text-nowrap">Add To Cart</span>
+            </Button>
+            <NavLink to="/cart" className="btn btn-primary btn-lg goToCart-btn f-ac text-center">
+              <span>Buy Now</span>
             </NavLink>
           </div>
         </>
@@ -163,6 +156,11 @@ const Wrapper = styled.section`
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    justify-content: center;
+  }
+
+  .addToCart-btn:hover {
+    background-color: transparent;
   }
 
   @media screen and (max-width: 768px) {

@@ -47,7 +47,8 @@ const CartItem = ({ id, name, price, color, qty, stock, images }) => {
         <Col className="d-none d-lg-block">{formatPrice(price * qty)}</Col>
         <Col className="col-auto">
           <Badge
-            className="bg-danger p-2"
+            className="p-2 pointer"
+            variant="danger"
             onClick={() => dispatch(removeItemFromCart(id))}
           >
             <FaTrash />
@@ -70,8 +71,8 @@ const Wrapper = styled.article`
 
   .color {
     display: inline-block;
-    height: .8rem;
-    width: .8rem;
+    height: 0.8rem;
+    width: 0.8rem;
   }
 
   .cartTotal {
@@ -84,6 +85,9 @@ const Wrapper = styled.article`
 
   .col {
     justify-content: start;
+  }
+
+  button {
   }
 `;
 

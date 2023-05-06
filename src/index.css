@@ -87,9 +87,7 @@ body {
 .section-center {
   width: 95vw;
   margin: 0 auto;
-  max-width: var(--max-width);
-  padding-left: 1.4rem;
-  padding-right: 1.4rem; }
+  max-width: var(--max-width); }
 
 .section {
   padding-top: 5rem;
@@ -209,9 +207,9 @@ p {
   margin: 0 auto;
   background: var(--white);
   border-radius: var(--borderRadius);
-  box-shadow: var(--shadow-1);
   padding: 2rem 3rem;
-  padding-bottom: 2.4rem; }
+  padding-bottom: 2.4rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.04); }
   .form h3 {
     margin-bottom: 2rem; }
   .form .form-group {
@@ -286,8 +284,11 @@ img {
   .grid-3 {
     grid-template-columns: 1fr; }
   .section-center {
-    padding-left: 1rem;
-    padding-right: 1rem; } }
+    padding-left: 0.5rem;
+    padding-right: 0.5rem; } }
 
 .btn-block {
   width: 100%; }
+
+.pointer {
+  cursor: pointer; }

@@ -47,10 +47,10 @@ const SingleProduct = () => {
       <BreadCrumb page="Products" subPage="Modern Poster" />
       <section className="section  pt-0  section-center page">
         <Row className="g-5">
-          <Col sm={12} lg={5}>
+          <Col sm={12} lg={6}>
             <Gallery images={images} />
           </Col>
-          <Col sm={12} lg={7}>
+          <Col sm={12} lg={6}>
             <SingleProductInfo product={product} />
           </Col>
         </Row>

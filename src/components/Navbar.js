@@ -63,11 +63,16 @@ const Navi = () => {
 const Wrapper = styled.nav`
   background: var(--white);
   border-bottom: 1px solid var(--grey-100);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
 
   .nav-center {
     display: grid;
     grid-template-columns: auto 1fr auto auto auto;
     padding: 1rem 0;
+    padding-bottom: .7rem;
 
     align-items: start;
     gap: 1.4rem;
@@ -126,9 +131,9 @@ const Wrapper = styled.nav`
     position: relative;
     .cart-count {
       position: absolute;
-      top: -.5rem;
-      right: .3rem;
-      font-size: .7rem;
+      top: -0.5rem;
+      right: 0.3rem;
+      font-size: 0.7rem;
     }
   }
 
@@ -146,6 +151,11 @@ const Wrapper = styled.nav`
 
     .orders {
       justify-self: end;
+    }
+
+    .bag .cart-count {
+      top: -0.7rem;
+      right: -0.5rem;
     }
 
     .search {
